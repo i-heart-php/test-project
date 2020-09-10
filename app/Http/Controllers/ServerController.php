@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Server;
 use Illuminate\Http\Request;
 
 class ServerController extends Controller
@@ -13,7 +14,7 @@ class ServerController extends Controller
      */
     public function index()
     {
-        $servers = Servers::all();
+        $servers = Server::all();
         return response()->json(compact($servers));
     }
 
