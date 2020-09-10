@@ -63,6 +63,7 @@ $ vendor/bin/phpunit
 ## Route API Endpoint
 
 <!-- prettier-ignore -->
+```
 +--------+----------+------------------------+----------+--------------------------------------------------------------------------+------------------+
 |        | GET|HEAD | /                      |          | Closure                                                                  | web              |
 |        | GET|HEAD | api                    |          | Closure                                                                  | api              |
@@ -83,3 +84,4 @@ $ vendor/bin/phpunit
 |        | GET|HEAD | flare/scripts/{script} |          | Facade\Ignition\Http\Controllers\ScriptController                        |                  |
 |        | POST     | flare/share-report     |          | Facade\Ignition\Http\Controllers\ShareReportController                   |                  |
 |        | GET|HEAD | flare/styles/{style}   |          | Facade\Ignition\Http\Controllers\StyleController                         |                  |
+```
