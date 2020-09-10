@@ -63,7 +63,7 @@ $ php artisan migrate:fresh --seed
 $ vendor/bin/phpunit
 ```
 
-## Route API Endpoint
+## Route API Endpoints
 
 <!-- prettier-ignore -->
 ```
@@ -89,4 +89,4 @@ $ vendor/bin/phpunit
 |        | GET|HEAD | flare/scripts/{script} |          | Facade\Ignition\Http\Controllers\ScriptController                        |                  |
 |        | POST     | flare/share-report     |          | Facade\Ignition\Http\Controllers\ShareReportController                   |                  |
 |        | GET|HEAD | flare/styles/{style}   |          | Facade\Ignition\Http\Controllers\StyleController                         |                  |
-+--------+----------+------------------------+----------+--------------------------------------------------------------------------+------------------+```
++--------+----------+------------------------+----------+--------------------------------------------------------------------------+------------------+
