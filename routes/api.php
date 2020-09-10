@@ -19,29 +19,21 @@ Route::get('/', function () {
 });
 
 Route::group(['namespace' => 'Auth'], function () {
-
     Route::post('auth/login', ['as' => 'login', 'uses' => 'AuthController@login']);
-
-    Route::post('auth/register', ['as' => 'register', 'uses' => 'RegisterController@register']);
-    // Send reset password mail
-    Route::post('auth/recovery', 'ForgotPasswordController@sendPasswordResetLink');
-    // handle reset password form process
-    Route::post('auth/reset', 'ResetPasswordController@callResetPassword');
-
 });
 
 Route::group(['middleware' => ['jwt', 'jwt.auth']], function () {
 
     Route::get('servers', ['uses' => 'ServerController@index']);
-    
+
     Route::post('server', ['uses' => 'ServerController@store']);
     Route::patch('server', ['uses' => 'ServerController@update']);
     Route::delete('server', ['uses' => 'ServerController@destroy']);
 
     Route::group(['namespace' => 'Profile'], function () {
         Route::get('profile', ['as' => 'profile', 'uses' => 'ProfileController@me']);
-        Route::put('profile', ['as' => 'profile', 'uses' => 'ProfileController@update']);
-        Route::put('profile/password', ['as' => 'profile', 'uses' => 'ProfileController@updatePassword']);
+        //Route::put('profile', ['as' => 'profile', 'uses' => 'ProfileController@update']);
+        //Route::put('profile/password', ['as' => 'profile', 'uses' => 'ProfileController@updatePassword']);
     });
 
     Route::group(['namespace' => 'Auth'], function () {

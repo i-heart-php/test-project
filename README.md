@@ -19,8 +19,8 @@ public/login.html
 ## Features
 
 -   JWT Authentication
--   Basic Features: Registration, Login, Update Profile & Password
--   JSON API Format response.
+-   Basic Features: Login, add/update/delete Server
+-   JSON API Format response
 -   Unit/Feature Testing
 
 ## Installation
@@ -57,7 +57,7 @@ $ php artisan migrate:fresh --seed
     ]);
 ```
 
-#### Run Tests
+## Tests
 
 ```
 $ vendor/bin/phpunit
