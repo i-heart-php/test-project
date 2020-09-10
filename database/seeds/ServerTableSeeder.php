@@ -15,12 +15,12 @@ class ServerTableSeeder extends Seeder
         Server::create([
             'name' => 'Staging Site',
             'fqdn' => 'test.com',
-            'description' => 'this is a staging enviroment',
+            'description' => 'this is a staging environment',
         ]);
         Server::create([
             'name' => 'Production Site',
             'fqdn' => 'production.com',
-            'description' => 'this is a production enviroment',
+            'description' => 'this is a production environment',
         ]);
     }
 }

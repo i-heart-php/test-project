@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ServerController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +16,7 @@ class ServerController extends Controller
     public function index()
     {
         $servers = Server::all();
-        return response()->json(compact($servers));
+        return response()->json(compact('servers'));
     }
 
     /**
@@ -81,22 +82,20 @@ class ServerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'fqdn' => 'required',
-            'description' => 'required',
+            'id' => 'required',
+            'value' => 'required',
         ]);
 
-        $server = Server::find($id);
-        $contact->name = $request->get('name');
-        $contact->fqdn = $request->get('fqdn');
-        $contact->description = $request->get('description');
-        $contact->save();
-
-        if ($server->save()) {
-            return response()->json(array('OK'));
+        $server = Server::find($request->get('id'));
+        if ($server) {
+            $server->{$request->get('name')} = $request->get('value');
+            $server->save();
+        } else {
+            return abort(500, 'Unable to find server with id=' . $request->get('id'));
         }
     }
 
@@ -106,9 +105,16 @@ class ServerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = (int) $request->getContent();
+
         $server = Server::find($id);
-        $server->delete();
+        if ($server) {
+            $server->delete();
+        } else {
+            return abort(500, 'Unable to find server with id=' . $id);
+        }
+
     }
 }

@@ -51,6 +51,36 @@
     <!-- Content wrapper end -->
 
   </div>
+  <!-- new server modal -->
+<div class="modal" id="new-server" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <a href="#" class="close" role="button" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <h5 class="modal-title">Add New Server</h5>
+      <form id="new-server-form" class="w-400 mw-full">
+            <div class="form-group">
+               <label for="name" class="required">Name</label>
+               <input type="text" class="form-control" id="name" name="name" placeholder="Server Name" required="required">
+            </div>
+            <div class="form-group">
+               <label for="fqdn" class="required">Domain Name</label>
+               <input type="text" class="form-control" id="fqdn" name="fqdn" placeholder="www.google.com" required="required">
+            </div>
+             <div class="form-group">
+               <label for="description" class="required">Description</label>
+               <input type="text" class="form-control" id="description" name="description" placeholder="Lorem Ipsum" required="required">
+            </div>
+      </form>
+      <div class="text-right mt-20"> <!-- text-right = text-align: right, mt-20 = margin-top: 2rem (20px) -->
+        <a href="#" class="btn mr-5" role="button">Cancel</a>
+        <a href="#" class="btn btn-primary" id="save-new" role="button">Save</a>
+      </div>
+    </div>
+  </div>
+</div>
+
   <!-- Page wrapper end -->
 
   <!-- Halfmoon JS -->
