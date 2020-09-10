@@ -1,7 +1,11 @@
 # forked from laravel-api-boilerplate
 
-This demo application is an example RESTful API using Laravel. The backend is api only, however GET
+This demo application is an example RESTful API using Laravel. The backend is an API only. GET
 requests to docroot will redirect to the SPA written in Vanilla JS.
+
+```
+public/login.html
+```
 
 ##### Packages:
 
@@ -17,8 +21,7 @@ requests to docroot will redirect to the SPA written in Vanilla JS.
 -   JWT Authentication
 -   Basic Features: Registration, Login, Update Profile & Password
 -   JSON API Format response.
--   Unit/Feature Testing (Soon).
--   Frontend Vue.js starter kit ready example (Soon).
+-   Unit/Feature Testing
 
 ## Installation
 
@@ -65,6 +68,8 @@ $ vendor/bin/phpunit
 <!-- prettier-ignore -->
 ```
 +--------+----------+------------------------+----------+--------------------------------------------------------------------------+------------------+
+| Domain | Method   | URI                    | Name     | Action                                                                   | Middleware       |
++--------+----------+------------------------+----------+--------------------------------------------------------------------------+------------------+
 |        | GET|HEAD | /                      |          | Closure                                                                  | web              |
 |        | GET|HEAD | api                    |          | Closure                                                                  | api              |
 |        | POST     | api/auth/login         | login    | App\Http\Controllers\Auth\AuthController@login                           | api              |
@@ -84,4 +89,4 @@ $ vendor/bin/phpunit
 |        | GET|HEAD | flare/scripts/{script} |          | Facade\Ignition\Http\Controllers\ScriptController                        |                  |
 |        | POST     | flare/share-report     |          | Facade\Ignition\Http\Controllers\ShareReportController                   |                  |
 |        | GET|HEAD | flare/styles/{style}   |          | Facade\Ignition\Http\Controllers\StyleController                         |                  |
-```
++--------+----------+------------------------+----------+--------------------------------------------------------------------------+------------------+```
