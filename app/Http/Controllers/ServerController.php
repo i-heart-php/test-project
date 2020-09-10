@@ -13,7 +13,8 @@ class ServerController extends Controller
      */
     public function index()
     {
-        //
+        $servers = Servers::all();
+        return response()->json(compact($servers));
     }
 
     /**
@@ -34,7 +35,20 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'fqdn' => 'required',
+            'description' => 'required',
+        ]);
+
+        $server = new Server([
+            'name' => $request->get('name'),
+            'fqdn' => $request->get('fqdn'),
+            'description' => $request->get('description'),
+        ]);
+        if ($server->save()) {
+            return response()->json(array('OK'));
+        }
     }
 
     /**
@@ -68,7 +82,21 @@ class ServerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'fqdn' => 'required',
+            'description' => 'required',
+        ]);
+
+        $server = Server::find($id);
+        $contact->name = $request->get('name');
+        $contact->fqdn = $request->get('fqdn');
+        $contact->description = $request->get('description');
+        $contact->save();
+
+        if ($server->save()) {
+            return response()->json(array('OK'));
+        }
     }
 
     /**
@@ -79,6 +107,7 @@ class ServerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $server = Server::find($id);
+        $server->delete();
     }
 }

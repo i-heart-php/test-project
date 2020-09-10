@@ -1,6 +1,7 @@
-# based on laravel-api-boilerplate
+# forked from laravel-api-boilerplate
 
-This is a boilerplate for writing RESTful API projects using Laravel, a "Starter Kit" you can use to build your API in seconds.
+This demo application is an example RESTful API using Laravel. The backend is api only, however GET
+requests to docroot will redirect to the SPA written in Vanilla JS.
 
 ##### Packages:
 
@@ -43,17 +44,42 @@ Run `php artisan key:generate` and `php artisan jwt:secret`
 $ php artisan migrate:fresh --seed
 ```
 
+#### Seeded User Creds
+
+```
+    User::create([
+        'name'              => 'Admin User',
+        'email'             => 'admin@admin.com',
+        'password'          => Hash::make('1234'),
+    ]);
+```
+
+#### Run Tests
+
+```
+$ vendor/bin/phpunit
+```
+
 ## Route API Endpoint
 
--   Postman API Documentation Starter Kit https://documenter.getpostman.com/view/880526/SVtN3BkG?version=latest
-
-| Verb | URI                                          | Controller               | Notes                                                                                                  |
-| ---- | -------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------ |
-| POST | `http://localhost:8000/api/auth`             | AuthController           | to do the login and get your access token                                                              |
-| POST | `http://localhost:8000/api/register`         | RegisterController       | to create a new user into your application                                                             |
-| POST | `http://localhost:8000/api/recovery`         | ForgotPasswordController | to recover your credentials;                                                                           |
-| POST | `http://localhost:8000/api/reset`            | ResetPasswordController  | to reset your password after the recovery (setup your mail credentials in `.env` file to avoid error); |
-| POST | `http://localhost:8000/api/logout`           | LogoutController         | to log out the user by invalidating the passed token;                                                  |
-| GET  | `http://localhost:8000/api/profile`          | ProfileController        | to get current user data                                                                               |
-| PUT  | `http://localhost:8000/api/profile`          | ProfileController        | to update current user data                                                                            |
-| PUT  | `http://localhost:8000/api/profile/password` | ProfileController        | to update current user password                                                                        |
+<!-- prettier-ignore -->
++--------+----------+------------------------+----------+--------------------------------------------------------------------------+------------------+
+|        | GET|HEAD | /                      |          | Closure                                                                  | web              |
+|        | GET|HEAD | api                    |          | Closure                                                                  | api              |
+|        | POST     | api/auth/login         | login    | App\Http\Controllers\Auth\AuthController@login                           | api              |
+|        | POST     | api/auth/recovery      |          | App\Http\Controllers\Auth\ForgotPasswordController@sendPasswordResetLink | api              |
+|        | POST     | api/auth/register      | register | App\Http\Controllers\Auth\RegisterController@register                    | api              |
+|        | POST     | api/auth/reset         |          | App\Http\Controllers\Auth\ResetPasswordController@callResetPassword      | api              |
+|        | POST     | api/logout             | logout   | App\Http\Controllers\Auth\LogoutController@logout                        | api,jwt,jwt.auth |
+|        | GET|HEAD | api/profile            | profile  | App\Http\Controllers\Profile\ProfileController@me                        | api,jwt,jwt.auth |
+|        | PUT      | api/profile            | profile  | App\Http\Controllers\Profile\ProfileController@update                    | api,jwt,jwt.auth |
+|        | PUT      | api/profile/password   | profile  | App\Http\Controllers\Profile\ProfileController@updatePassword            | api,jwt,jwt.auth |
+|        | PATCH    | api/server             |          | App\Http\Controllers\ServerController@update                             | api,jwt,jwt.auth |
+|        | POST     | api/server             |          | App\Http\Controllers\ServerController@store                              | api,jwt,jwt.auth |
+|        | DELETE   | api/server             |          | App\Http\Controllers\ServerController@destroy                            | api,jwt,jwt.auth |
+|        | GET|HEAD | api/servers            |          | App\Http\Controllers\ServerController@index                              | api,jwt,jwt.auth |
+|        | POST     | flare/execute-solution |          | Facade\Ignition\Http\Controllers\ExecuteSolutionController               |                  |
+|        | GET|HEAD | flare/health-check     |          | Facade\Ignition\Http\Controllers\HealthCheckController                   |                  |
+|        | GET|HEAD | flare/scripts/{script} |          | Facade\Ignition\Http\Controllers\ScriptController                        |                  |
+|        | POST     | flare/share-report     |          | Facade\Ignition\Http\Controllers\ShareReportController                   |                  |
+|        | GET|HEAD | flare/styles/{style}   |          | Facade\Ignition\Http\Controllers\StyleController                         |                  |

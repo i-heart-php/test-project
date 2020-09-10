@@ -47,6 +47,21 @@ function loadServers() {
     </tbody>`;
     card.appendChild(table);
     addLogout();
+
+    var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+            Authorization: "Bearer " + window.localStorage.getItem("token"),
+            "Content-Type": "application/json",
+        },
+    };
+    fetch("/api/servers", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
 }
 
 function logOut() {
